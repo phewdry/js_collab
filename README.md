@@ -19,9 +19,6 @@
 
 ---
 # Schedule
-
-Creating an optimal learning timeline with aggressive pacing specifically for JavaScript and TypeScript requires a focused approach that aims to build a solid foundation in JavaScript first, as TypeScript is a superset of JavaScript. This plan is designed for an individual who can dedicate full-time hours (around 40 hours per week) to learning. If you're balancing other commitments, you may need to adjust the pacing accordingly.
-
 ---
 ## https://javascript.info/ (PART 1 The JavaScript language)
 ### Week 1: JavaScript Basics
