@@ -41,7 +41,7 @@ Creating an optimal learning timeline with aggressive pacing specifically for Ja
 - **Project**: Fetch data from an API and display it on a webpage.
 
 ### Week 2-3: Advanced JavaScript
-![image](https://github.com/phewdry/js_collab/assets/24968877/3a827686-e697-4b68-9ed6-10afee109ff7)
+![image](https://github.com/phewdry/js_collab/assets/24968877/a1d4e11a-cf51-4e01-bf98-66c75e11df0e)
 
 ---
 ## https://javascript.info/ (PART 2 Browser: Document, Events, Interfaces)
