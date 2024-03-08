@@ -102,6 +102,21 @@ function cmp(a, b) {
     if (JSON.stringify(a).length !== JSON.stringify(b).length) {
         return false;
     }
+
+    function deepCopy(obj) {
+
+    }
+
+    let originalObject = {
+        a: 1,
+        b: {
+            c: 2,
+            d: [3, 4]
+        }
+    };
+
+    let deepCopy2 = deepCopy(originalObject);
+
     if (funcsToStr(a) !== funcsToStr(b)) {
         return false;
     }
@@ -165,5 +180,141 @@ function deepCmp(a, b) {
 console.log(`${deepCmp(ob1, ob2)}`);
 
 
+console.log("-".repeat(20)); // Prints 20 hyphens
 
 
+const obj = {
+    name: "John",
+    age: 30,
+    city: "New York"
+};
+
+const keys = Object.keys(obj);
+
+// Using arrow function
+const keysArrow = Object.keys(obj).map(key => key.toUpperCase());
+
+console.log(keys);        // Output: ["name", "age", "city"]
+console.log(keysArrow);   // Output: ["NAME", "AGE", "CITY"]
+
+
+
+// Using a Recursive Function:
+// This method involves recursively copying each nested object and array within the original object.
+
+function myFunction(value, index, array) {
+    return value;
+}
+
+// function deepCopy(obj) {
+//     if (obj === null || typeof obj !== 'object') {
+//         return obj
+//     }
+
+//     // let a = [keys.map(myFunction)]
+
+//     // keys = obj.keys();
+//     let copy;
+
+//     //  if type array copy 
+//     if (Array.isArray(obj)) {
+//         // works for subarrays too
+//         copy = [...obj];
+//     }
+//     let keys = Object.keys(obj);
+
+//     // > [1,2,3].forEach(key=>{console.log(key)})
+//     // curr type is obj
+//     if (typeof obj === 'object') {
+
+//         keys.forEach(key => {
+//             copy[key] = (deepCopy(obj[key]));
+//         });
+
+//     }
+
+
+//     return copy
+//     // if type object recurse
+
+// }
+
+let originalObject = {
+    a: 1,
+    b: {
+        c: 2,
+        d: [3, 4]
+    }
+};
+
+// let deepCopyObj = deepCopy(originalObject);
+// console.log(`${deepCopyObj}`);
+
+
+// function deepCopyWorks(obj) {
+//     if (obj === null || typeof obj !== 'object') {
+//         return obj
+//     }
+
+//     // let a = [keys.map(myFunction)]
+
+//     // keys = obj.keys();
+//     // let copy={}
+
+//     //  if type array copy 
+//     // if (Array.isArray(obj)) {
+//     //     // works for subarrays too
+//     //     copy= [...obj];
+//     // }
+//     let copy = Array.isArray(obj) ? [] : {};
+
+//     let keys = Object.keys(obj);
+
+//     keys.forEach(key => {
+//         copy[key] = deepCopy(obj[key]);
+//         console.log(`${copy[key]}`);
+//     });
+
+//     // > [1,2,3].forEach(key=>{console.log(key)})
+//     // curr type is obj
+//     // if (typeof obj === 'object') {
+
+//     //     keys.forEach(key => {
+//     //         copy[key]=(deepCopyWorks(obj[key]));
+//     //     });
+
+//     // }
+
+
+//     return copy
+//     // if type object recurse
+
+// }
+
+
+console.log("-".repeat(20)); // Prints 20 hyphens
+
+function deepCopyWorks(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+
+    let copy = Array.isArray(obj) ? [] : {};
+
+    let keys = Object.keys(obj);
+
+    // > Object.keys({1:1,2:2}
+    //     [ '1', '2' ]
+    //     > Object.values({1:1,2:2}
+    //     [ 1, 2 ]    
+    keys.forEach(key => {
+        copy[key] = deepCopyWorks(obj[key]);
+        console.log(`${copy[key]}`);
+
+    });
+
+    return copy;
+}
+
+let deepCopyObj2 = deepCopyWorks(originalObject);
+console.log(`${deepCopyObj2}`);
