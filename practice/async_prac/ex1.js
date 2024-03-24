@@ -7,10 +7,10 @@
 // Output: After a delay, log a message or return a value indicating the data was "fetched".
 
 
-let simulateDataFetch = async () => {
+let simulateDataFetch = () => {
 
 
-    return new Promise((res, rej) => {
+    return new Promise((res) => {
         let retData = null;
         setTimeout(() => {
             retData = "SUCCESS, DATA RETREIVED";
@@ -34,14 +34,37 @@ let asyncCaller = async () => {
         console.log(`ERROR, ${err.message}`);
     }
 }
+//////////////////////////////////////////////////
 
-// asyncCaller();
+(() => {
+    let simulateDataFetch_IIFE = () => {
 
-async function myFunction() {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log("Two seconds have passed");
-    // Code to execute after the delay
-}
+
+        return new Promise((res) => {
+            let retData = null;
+            setTimeout(() => {
+                retData = "SUCCESS, DATA RETREIVED";
+                res(retData);
+            }, 2000)
+        })
+
+    }
+
+
+    let startF = async () => {
+        try {
+            let data = await simulateDataFetch_IIFE();
+            console.log(data);
+        } catch (err) {
+            console.log(`ERROR, ${err.message}`);
+        }
+    }
+
+    startF();
+
+})()
+
+
 
 // myFunction();
 
@@ -73,13 +96,8 @@ let ex2 = async (val) => {
 
 
 
-ex2(99)
-    .then(data => {
-        console.log(`${data}`);
-    })
-    .catch(error => {
-        console.error(`${error}`);
-    });
+ex2(99).then(data => console.log(`${data}`))
+    .catch(error => console.error(`${error}`));
 
 
 
@@ -104,13 +122,16 @@ async function fetchMultipleDataSources() {
     });
 
 
-    let needToProcess = [p1, p2, p3];
+    // let needToProcess = [p1, p2, p3];
+    let needToProcess = [1, 2, 3].map((val) => {
+        new Promise((res) => { SetTimeout(() => res(`P${val} resolved`), 1000) })
+    })
 
     // Promise.all([promise1, promise2, promise3])
     await Promise.all(needToProcess)
         .then((values) => {
             console.log('All promises resolved:', values);
-            let [destr1, destr2, destr3] = values;
+            let [destr1, destr2, destr3] = values[0];
             console.log('promise1 resolved:', destr1);
 
         })
@@ -162,7 +183,8 @@ fetchSequentialDataSources().then(res => { console.log(res) })
 async function waitAndRun(ms, cb) {
 
     async function timerRun() {
-        return await new Promise(res => setTimeout(res("waitAndRun timer done"), 1000))
+        return await new Promise(res => setTimeout(() => res("waitAndRun timer done"), 1000));
+
     }
 
     let msg = await timerRun();
@@ -314,5 +336,5 @@ taskWithRandomDelay();
 
 function createPromise(index) {
 
-    
+
 }
